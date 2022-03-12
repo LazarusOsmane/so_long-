@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:08:39 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/11 23:24:20 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:09:22 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -151,7 +151,7 @@ char	*ft_check_map(char *file)
 	if (errno == ELOOP)
 		return (NULL);
 	if (errno == ENOENT)
-		return (NULL);
+		return (NULL);b
 	while (read(fd, &c, 1))
 		len++;
 	close (fd);

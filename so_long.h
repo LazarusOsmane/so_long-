@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:25:02 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/11 23:23:43 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:27:59 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_all
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
 	t_player		*player;
 	t_enemy			*enemis;
 	t_xpm			*xpm;
