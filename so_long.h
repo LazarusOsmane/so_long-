@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:25:02 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/12 17:27:59 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/13 17:09:25 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "/usr/include/X11/X.h"
-# include "./minilibx-linux/mlx.h"
-# include "./libft/libft.h"
 # include <errno.h>
+# ifdef __linux__
+#  include "./minilibx-linux/mlx.h"
+#  include "/usr/include/X11/X.h"
+# endif
+# ifdef __APPLE__
+#  include "minilibx_opengl_20191021/mlx.h"
+# endif
 
 # define UP 119
 # define DOWN 115
