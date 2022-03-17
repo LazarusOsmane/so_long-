@@ -6,13 +6,14 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:25:02 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/13 17:09:25 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/17 04:49:54 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
+# define HEIGHT 64
+# define WIDTH 64
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -20,6 +21,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
+# include "libft/libft.h"
 # ifdef __linux__
 #  include "./minilibx-linux/mlx.h"
 #  include "/usr/include/X11/X.h"
@@ -34,33 +36,12 @@
 # define RIGHT 100
 # define ESC 65307
 
-typedef struct s_map
-{
-	int	colmax;
-	int	playermax;
-	int	exitmax;
-	int	x;
-	int	y;
-	int	px;
-	int	py;
-	int	*tab_map;
-}	t_map;
-
 typedef struct s_xpm
 {
-	void	*sol;
-	void	*mur;
-	void	*colt;
-	void	*exit;
-	void	*ph_close;
-	void	*ph_open;
-	void	*pb_close;
-	void	*pb_open;
-	void	*pr_close;
-	void	*pr_open;
-	void	*pl_close;
-	void	*pl_open;
-	void	***enemy;
+	int		x;
+	int		y;
+	void	*img;
+	int		format;
 }	t_xpm;
 
 typedef struct s_player
@@ -80,17 +61,46 @@ typedef struct s_enemy
 	int	prev;
 }	t_enemy;
 
+typedef struct s_map
+{
+	int		w_max;
+	int		h_max;
+	int		c_map;
+	int		x_start;
+	int		y_start;
+	int		x_line;
+	int		y_line;
+	char	**map;
+}	t_map;
+
+typedef struct s_elem
+{
+	char	*wall;
+	char	*ground;
+	char	*map;
+	int		color;
+}	t_elem;
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		llg;
+	int		edn;
+}	t_data;
+
 typedef struct s_all
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
-	t_player		*player;
-	t_enemy			*enemis;
+	t_data			*img;
+	t_data			*tmp;
 	t_xpm			*xpm;
 	t_map			*map;
+	t_elem			*elem;
 }	t_all;
 
-char	*ft_check_map(char *file);
-t_map	*init_map(char *file);
-#endif 
+char	*ft_check_map(char **tab_map, char *file);
+//t_map	*init_map(char *file);
+char	**read_to_file(char *file, int *x, int *y);
+#endif

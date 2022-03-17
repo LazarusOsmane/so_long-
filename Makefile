@@ -1,17 +1,18 @@
-SRC = main.c #map.c
+SRC = main.c parse.c #map.c
 OBJ = ${SRC:%.c=%.o}
 CFLAG = -g3 -Wall -Wextra -Werror
 CC = gcc
 UNAME := $(shell uname)
 all: so_long
 
-ifeq ($(UNAME), linux)
+ifeq ($(UNAME), Linux)
 so_long: $(OBJ)
-	$(CC) $(CFLAG) $(OBJ) -lreadline -o $@ minilibx-linux/libmlx_Linux.a -lXext -lX11 -I./minilibx_linux/ 
+	$(CC) $(CFLAG) $(OBJ) -lreadline -o $@ libft/libft.a minilibx-linux/libmlx_Linux.a -lXext -lX11 -I./minilibx_linux/ 
 
 %.o: %.c
+	cd libft/ && make && cd ..
 	cd minilibx-linux && make && cd ../
-	$(CC) $(CFLAG) -c $^ 
+	$(CC) $(CFLAG) -c $^ -o $@
 endif
 
 ifeq ($(UNAME), Darwin)
@@ -30,5 +31,6 @@ fclean:
 	rm *.o so_long
 
 re: fclean all
+	cd libft && make re && cd ..
 
 .PHONY: all fclean clean re
